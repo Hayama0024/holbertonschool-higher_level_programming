@@ -1,7 +1,10 @@
 #!/usr/bin/python3
+"""Defines a Square class with position support."""
 
 
 class Square:
+    """Represents a square"""
+
     def __init__(self, size=0, position=(0, 0)):
         self.size = size
         self.position = position
@@ -37,7 +40,6 @@ class Square:
         if self.__size == 0:
             print()
             return
-        for _ in range(self.__position[1]):
-            print()
-        for _ in range(self.__size):
-            print(" " * self.__position[0] + "#" * self.__size)
+
+        # 縦のスペース (position[1] 行分)
+        for _ in_
