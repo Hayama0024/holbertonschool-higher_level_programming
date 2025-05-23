@@ -1,28 +1,35 @@
 #!/usr/bin/python3
+"""Defines a Square class with printing functionality."""
 
 
 class Square:
+    """Represents a square"""
+
     def __init__(self, size=0):
-        self.size = size  # セッター経由でサイズを設定
+        self.size = size  # setter を使ってバリデーション
 
     @property
     def size(self):
-        return self.__size  # プライベート変数 __size を返す
+        """Retrieve size"""
+        return self.__size
 
     @size.setter
     def size(self, value):
+        """Set size with validation"""
         if not isinstance(value, int):
-            raise TypeError("size must be an integer")  # 型チェック
+            raise TypeError("size must be an integer")
         if value < 0:
-            raise ValueError("size must be >= 0")       # 範囲チェック
-        self.__size = value  # OKなら保存
+            raise ValueError("size must be >= 0")
+        self.__size = value
 
     def area(self):
-        return self.__size ** 2  # 面積 = size × size
+        """Return area of the square"""
+        return self.__size ** 2
 
     def my_print(self):
+        """Print the square using '#' characters"""
         if self.__size == 0:
-            print()  # 空行だけ出力
-            return
-        for _ in range(self.__size):         # 行数分ループ
-            print("#" * self.__size)         # "#"を size 個並べて出力
+            print()  # 空行だけ表示
+        else:
+            for _ in range(self.__size):
+                print("#" * self.__size)
