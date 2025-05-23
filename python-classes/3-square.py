@@ -1,14 +1,22 @@
 #!/usr/bin/python3
-"""Defines a Square class with size validation."""
+"""Defines a class Square that computes area with private size."""
 
 
 class Square:
-    """Represents a square with a private size attribute and validation."""
+    """Represents a square with private size and area computation"""
 
     def __init__(self, size=0):
-        """Initialize a new Square, validating size."""
+        """Initialize a new Square
+
+        Args:
+            size (int): The size of the square (must be >= 0)
+        """
         if not isinstance(size, int):
             raise TypeError("size must be an integer")
         if size < 0:
             raise ValueError("size must be >= 0")
         self.__size = size
+
+    def area(self):
+        """Return the area of the square"""
+        return self.__size ** 2
