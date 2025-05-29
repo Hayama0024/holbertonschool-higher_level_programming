@@ -1,25 +1,28 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
+"""
+Module containing class Dragon.
+"""
 
-# Mixin class that provides swimming behavior
+
 class SwimMixin:
+    """
+    A class to define a creature.
+    """
     def swim(self):
-        # Print a swimming message using the instance's name
-        print(f"{self.name} swims!")
+        print("The creature swims!")
 
 
-# Mixin class that provides flying behavior
 class FlyMixin:
+    """
+    A class to define a creature.
+    """
     def fly(self):
-        # Print a flying message using the instance's name
-        print(f"{self.name} flies!")
+        print("The creature flies!")
 
 
-# Dragon class that inherits both swimming and flying capabilities
 class Dragon(SwimMixin, FlyMixin):
-    def __init__(self, name):
-        # Initialize the dragon's name
-        self.name = name
-
+    """
+    A class to define a dragon.
+    """
     def roar(self):
-        # Print a roaring message using the instance's name
-        print(f"{self.name} roars!")
+        print("The dragon roars!")
