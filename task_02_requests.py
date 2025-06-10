@@ -26,9 +26,9 @@ def fetch_and_save_posts():
         data = response.json()
         with open("posts.csv", "w", newline='', encoding="utf-8") as csvfile:
             writer = csv.DictWriter(
-                    csvfile,
-                    fieldnames=["id", "title", "body"]
-                    )
+                csvfile,
+                fieldnames=["id", "title", "body"]
+            )
             writer.writeheader()
             for post in data:
                 writer.writerow({
