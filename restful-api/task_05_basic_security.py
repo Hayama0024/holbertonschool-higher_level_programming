@@ -53,7 +53,7 @@ def login():
 @app.route('/jwt-protected')
 @jwt_required()
 def jwt_protected():
-    return jsonify({"status": "ok"})
+    return jsonify({"message": "JWT Auth: Access Granted"})
 
 # 管理者のみアクセスできるルート
 @app.route('/admin-only')
@@ -63,7 +63,7 @@ def admin_only():
     user = users.get(username)
     if not user or user['role'] != 'admin':
         return jsonify({"error": "Admin access required"}), 403
-    return jsonify({"status": "ok"})
+    return jsonify({"message": "Admin Access: Granted"})
 
 # JWTエラーハンドラ
 @jwt.unauthorized_loader
