@@ -46,7 +46,7 @@ def login():
     if not user or not check_password_hash(user['password'], password):
         return jsonify({"error": "Invalid credentials"}), 401
 
-    access_token = create_access_token(identity={"username": username, "role": user['role']})
+    access_token = create_access_token(identity=username)  # 修正：usernameだけをidentityに
     return jsonify(access_token=access_token)
 
 # JWTトークンが必要なルート
@@ -59,8 +59,9 @@ def jwt_protected():
 @app.route('/admin-only')
 @jwt_required()
 def admin_only():
-    current_user = get_jwt_identity()
-    if current_user['role'] != 'admin':
+    username = get_jwt_identity()  # 修正：usernameを直接取得
+    user = users.get(username)
+    if not user or user['role'] != 'admin':
         return jsonify({"error": "Admin access required"}), 403
     return jsonify({"message": "Admin Access: Granted"})
 
