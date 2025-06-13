@@ -33,7 +33,7 @@ def verify_password(username, password):
 @app.route('/basic-protected')
 @auth.login_required
 def basic_protected():
-    return "Basic Auth: Access Granted"
+    return jsonify({"status": "ok"})
 
 # JWTログイン用ルート
 @app.route('/login', methods=['POST'])
@@ -87,4 +87,4 @@ def handle_fresh_token_required(jwt_header, jwt_payload):
     return jsonify({"error": "Fresh token required"}), 401
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=5000)
