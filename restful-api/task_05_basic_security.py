@@ -50,20 +50,20 @@ def login():
     return jsonify(access_token=access_token)
 
 # JWTトークンが必要なルート
-@app.route('/jwt-protected')
+@app.route("/jwt-protected")
 @jwt_required()
 def jwt_protected():
-    return jsonify({"message": "JWT Auth: Access Granted"})
+    return "JWT Auth: Access Granted", 200
 
 # 管理者のみアクセスできるルート
-@app.route('/admin-only')
+@app.route("/admin-only")
 @jwt_required()
 def admin_only():
     username = get_jwt_identity()
     user = users.get(username)
-    if not user or user['role'] != 'admin':
-        return jsonify({"error": "Admin access required"}), 403
-    return jsonify({"message": "Admin Access: Granted"})
+    if user and user['role'] == 'admin':
+        return "Admin Access: Granted", 200
+    return jsonify({"error": "Admin Access Required"}), 403
 
 # JWTエラーハンドラ
 @jwt.unauthorized_loader
@@ -87,4 +87,4 @@ def handle_fresh_token_required(jwt_header, jwt_payload):
     return jsonify({"error": "Fresh token required"}), 401
 
 if __name__ == '__main__':
-    app.run(port=5000)
+    app.run()
